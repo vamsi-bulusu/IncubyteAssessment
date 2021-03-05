@@ -13,4 +13,9 @@ public class StringCalculatorTest {
         StringCalculator stringCalculator = new StringCalculator();
         assertEquals(0, stringCalculator.add(""));
     }
+    @Test
+    void addStringWithOneNum(){
+        StringCalculator stringCalculator = new StringCalculator();
+        assertEquals(1, stringCalculator.add("1"));
+    }
 }

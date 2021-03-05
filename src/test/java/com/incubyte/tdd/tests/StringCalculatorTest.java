@@ -23,7 +23,7 @@ public class StringCalculatorTest {
     @Test
     void addStringWithTwoNum(){
         StringCalculator stringCalculator = new StringCalculator();
-        assertEquals(1, stringCalculator.add("1,2"));
+        assertEquals(3, stringCalculator.add("1,2"));
     }
 
 }

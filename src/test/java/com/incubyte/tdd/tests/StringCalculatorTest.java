@@ -1,6 +1,7 @@
 package com.incubyte.tdd.tests;
 
 import com.incubyte.tdd.StringCalculator;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.InputMismatchException;
@@ -39,6 +40,13 @@ public class StringCalculatorTest {
         StringCalculator stringCalculator = new StringCalculator();
         Throwable throwable = assertThrows(InputMismatchException.class, () -> stringCalculator.add("1,\n"));
         assertEquals("Invalid Input", throwable.getMessage());
+    }
+
+    @Test
+    @DisplayName("Delimiter pattern - //[delimiter]\n[numbers…]")
+    void addStringWithCustomDelimiter(){
+        StringCalculator stringCalculator = new StringCalculator();
+        assertEquals(6, stringCalculator.add("//;\n1;2"));
     }
 
 }

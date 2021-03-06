@@ -12,6 +12,7 @@ public class StringCalculator {
         }
         return number.split(",|\n");
     }
+
     public int sum(int[] numbers){
         int result = 0;
         for (int num:numbers) result += num;

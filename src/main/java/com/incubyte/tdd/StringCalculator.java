@@ -1,5 +1,6 @@
 package com.incubyte.tdd;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,9 +11,13 @@ public class StringCalculator {
 
     public int add(String number){
         if(number.isEmpty()) return 0;
-        else {
-            return sum(Stream.of(tokenize(number)).mapToInt(Integer::parseInt).toArray());
+        String[] numString = tokenize(number);
+        int[] negatives = Stream.of(numString).mapToInt(Integer::parseInt).filter(num -> num < 0).toArray();
+        if(negatives.length > 0){
+            String message = "negatives not allowed, " + Arrays.toString(negatives);
+            throw new RuntimeException(message);
         }
+        return sum(Stream.of(numString).mapToInt(Integer::parseInt).filter(num -> num < 1000).toArray());
     }
 
     public String[] tokenize(String number){

@@ -46,7 +46,20 @@ public class StringCalculatorTest {
     @DisplayName("Delimiter pattern - //[delimiter]\n[numbers…]")
     void addStringWithCustomDelimiter(){
         StringCalculator stringCalculator = new StringCalculator();
-        assertEquals(6, stringCalculator.add("//;\n1;2"));
+        assertEquals(3, stringCalculator.add("//;\n1;2"));
+    }
+
+    @Test
+    void addStringWithNegativeNumber(){
+        StringCalculator stringCalculator = new StringCalculator();
+        Throwable throwable = assertThrows(RuntimeException.class, () -> stringCalculator.add("-1"));
+        assertEquals("negatives not allowed, [-1]", throwable.getMessage());
+    }
+
+    @Test
+    void addStringWithNumbersGreaterThan1000(){
+        StringCalculator stringCalculator = new StringCalculator();
+        assertEquals(2, stringCalculator.add("2,1002"));
     }
 
 }

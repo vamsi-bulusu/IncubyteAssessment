@@ -3,7 +3,9 @@ package com.incubyte.tdd.tests;
 import com.incubyte.tdd.StringCalculator;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.InputMismatchException;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class StringCalculatorTest {
@@ -30,6 +32,13 @@ public class StringCalculatorTest {
     void addStringWithNewline(){
         StringCalculator stringCalculator = new StringCalculator();
         assertEquals(6, stringCalculator.add("1\n2,3"), "Newline between numbers instead of commas");
+    }
+
+    @Test
+    void addStringWithInvalidInput(){
+        StringCalculator stringCalculator = new StringCalculator();
+        Throwable throwable = assertThrows(InputMismatchException.class, () -> stringCalculator.add("1,\n"));
+        assertEquals("Invalid Input", throwable.getMessage());
     }
 
 }
